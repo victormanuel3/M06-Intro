@@ -18,9 +18,16 @@
     <audio controls id="audio">
         <source src="DRUMC0.WAV" type="audio/wav">
     </audio>
-    <br><button onclick="playAudio()">PLAY</button><br>
-    <button onclick="playAudio2()">PLAY 2</button>
-
+    <br><button onclick="playAudio()">PLAY</button>
+    <br><button onclick="playAudio2()">PLAY 2</button>
+    <br><button onclick="clk_btn_stopAudio()">STOP</button>
+    <br><button onclick="clk_btn_mute()">MUTE</button>
+    <br><button onclick="clk_btn_volUp()">VOL+</button>
+    <br><button onclick="clk_btn_volDown()">VOL-</button>
+    <br><input type="range" min="0" max="1" step="0.2" id="vol" onchange="change_inp_vol()">
+    <br>Duration:
+    <input type="range" min="0" max="0" step="0.1" id="timer">
+    <span id="timer_span"></span>
     <!-- --------------------------------------------------- --->
 
     <div id="llista_propietats"></div>

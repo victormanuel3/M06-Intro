@@ -25,15 +25,65 @@ function sumaValors() {
 
 let audio = document.getElementById("audio");
 
+const timer = document.getElementById("timer");
+const timer_span = document.getElementById("timer_span");
 
 function playAudio() {
     audio.play();
+    timer.max=audio.duration;
+    timer_span.max=audio.duration;
+    let ref_interval = window.setInterval(function(){
+        timer.value = audio.currentTime;
+        timer_span.innerText = audio.currentTime;
+        if(audio.currentTime==audio.duration){
+            window.clearInterval(ref_interval);
+        }
+    },1000)
 }
 
 function playAudio2() {
     audio.src = "FANFARE1.WAV"
     audio.play();
 }
+
+function clk_btn_stopAudio() { //pausa el audio
+    audio.pause();
+    audio.currentTime=0; //En qué posición se establece el audio.
+}
+
+function clk_btn_mute() {
+    audio.muted=!audio.muted; //Lo contrario del estado actual.
+}
+
+function clk_btn_volUp() { //aumentar volumen de 0 a 1, 1 siendo el total.
+    try{
+        audio.volume +=0.2;
+    }catch(e){
+        audio.volume=1;
+    }
+    document.getElementById("vol").value=audio.volume
+}
+
+function clk_btn_volDown() { //Disminuir volumen.
+    try{
+        audio.volume -=0.2;
+    }catch(e){
+        audio.volume=0;
+    }
+    document.getElementById("vol").value=audio.volume //que al darle al boton se modifique la barra range
+}
+
+function change_inp_vol(){
+    audio.volume = document.getElementById("vol").value //Hacer que el volumen dle audio se mida mediante esta barra
+}
+//----------------------------------------------------------------
+
+window.setTimeout(
+    function(){
+        document.getElementById("timer_span").innerText = audio.duration;
+    },500
+)
+
 
 //----------------------------------------------------------------
 
@@ -65,3 +115,5 @@ function mostraLlista() {
         ` </li>
                   </ol>`;
 }
+
+// 
