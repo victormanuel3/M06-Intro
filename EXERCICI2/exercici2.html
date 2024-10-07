@@ -15,17 +15,18 @@
 </head>
 <body>
     <div id="taula_propietats"></div>
+    //-------------------------------------------
+    <h1>Cuenta regresiva</h1><br>
+    Minutos: 
+    <input type="number" name="minutos" id="minutos" value="0">
     <br>
-    <form action="">
-        Minutos: 
-        <input type="number" value="00">
-        <br>
-        Segundos: 
-        <input type="number" value="00">
-        <button id="set">SET</button>
-        <button id="cuenta_atras">Cuenta atrás</button>
-        <button id="detener">Detener</button>
-        <button id="pausar">Pausar</button>
-    </form>
+    Segundos: 
+    <input type="number" name="segundos" id="segundos" value="0">
+    <br><br>
+    <button id="cuenta_atras" onclick="btn_cuenta_atras()">START</button>
+    <button id="reestablecer" onclick="reestablecer()">Reestablecer</button>
+    <button id="pausar" onclick="pausar()">Pausar</button>
+    <audio src="../EXERCICI1 - EXEMPLE/DRUMC0.WAV" id="alarma"></audio>
+    <p class="cuenta_regresiva">00:00</p>
 </body>
 </html>
