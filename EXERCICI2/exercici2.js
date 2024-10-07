@@ -51,7 +51,7 @@ function cuenta_atras() {
     }
 
     // Update the display
-    document.querySelector(".cuenta_regresiva").innerText = minutos + ':' + (segundos < 10 ? '0' : '') + segundos;
+    document.querySelector(".cuenta_regresiva").innerText = (minutos < 10 ? '0' : '') + minutos + ':' + (segundos < 10 ? '0' : '') + segundos;
 }
 
 //=====================================================================================================================
@@ -84,9 +84,58 @@ function reestablecer() {
 
     pausado = false; // Reiniciar el estado de pausa
 
-    audio.paused();
+    audio.pause();
     audio.currentTime = 0;
 }
 
 //=====================================================================================================================
 
+let hora_actual = document.querySelector(".hora_actual");
+
+
+function hora(){
+    let data = new Date();
+    hora_actual.innerText = data.getHours()+':'+data.getMinutes()+':'+data.getSeconds();
+}
+
+window.setInterval(hora, 1000);
+
+//---------------------------------------------------------------------------------------------------------------------
+
+let alarmaSonada = false; // Variable para controlar si la alarma ya ha sonado
+
+function functionAlarma() {
+    let data = new Date();
+    let alarm_hora_value = parseInt(document.getElementById("alarm_hora").value); //Valor input hora
+    let alarm_minuto_value = parseInt(document.getElementById("alarm_minuto").value); //Valor input minuto
+    
+    if (data.getHours() == alarm_hora_value && data.getMinutes() == alarm_minuto_value) {
+        if (!alarmaSonada){  //Si no ha sonado la alarma hace esto.
+            const sonido_alarma = document.getElementById("sonido_alarma");
+            let audio_select = document.getElementById("audio");
+            sonido_alarma.src = audio_select.value; // Establecemos el sonido seleccionado en el select
+            sonido_alarma.play();
+            alarmaSonada = true; // Marcar que la alarma ha sonado
+        }
+    } else { //Si ya sono la alarma la hace en false
+        alarmaSonada = false;
+    }
+}
+
+let alarmInterval; // Variable para almacenar el intervalo de la alarma
+
+function verificacionAlarma() {
+    // Detener el intervalo anterior si existe
+    clearInterval(alarmInterval);
+    
+    // Iniciar un nuevo intervalo, verificando cada cambio si cada hora es igual o no.
+    alarmInterval = window.setInterval(functionAlarma, 1000);
+}
+
+//-----------------------------------------------------
+
+function pausar_alarma() {
+    const sonido_alarma = document.getElementById("sonido_alarma");
+    sonido_alarma.pause();
+    sonido_alarma.currentTime = 0; // Reiniciar el tiempo
+}

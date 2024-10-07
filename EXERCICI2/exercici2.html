@@ -15,18 +15,35 @@
 </head>
 <body>
     <div id="taula_propietats"></div>
-    //-------------------------------------------
-    <h1>Cuenta regresiva</h1><br>
+    <!--------------------------------------------------------------------------->
+    <h1>Cuenta regresiva</h1>
     Minutos: 
-    <input type="number" name="minutos" id="minutos" value="0">
-    <br>
+    <input type="number" name="minutos" id="minutos" max="24" min="0" value="0">
+    <br><br>
     Segundos: 
-    <input type="number" name="segundos" id="segundos" value="0">
+    <input type="number" name="segundos" id="segundos" max="59" min="0" value="0">
     <br><br>
     <button id="cuenta_atras" onclick="btn_cuenta_atras()">START</button>
     <button id="reestablecer" onclick="reestablecer()">Reestablecer</button>
     <button id="pausar" onclick="pausar()">Pausar</button>
     <audio src="../EXERCICI1 - EXEMPLE/DRUMC0.WAV" id="alarma"></audio>
     <p class="cuenta_regresiva">00:00</p>
+    <!--------------------------------------------------------------------------->
+    <h1>Hora actual</h1>
+    <p class="hora_actual">00:00:00</p>
+    <h2>Alarma:</h2>
+    Hora:
+    <input type="number" name="alarm_hora" max="23" min="0" id="alarm_hora">
+    Minuto:
+    <input type="number" name="alarm_minuto" max="59" min="0" id="alarm_minuto">
+    <button id="alarma_hora" onclick="verificacionAlarma()">Establecer</button>
+    <!-- Elegir sonido de alarma --><br><br>
+    <select name="audio" id="audio">
+        <option value="alarma1.mp3">alarma 1</option>
+        <option value="alarma2.mp3">alarma 2</option>
+        <option value="alarma3.mp3">alarma 3</option>
+    </select>
+    <audio src="alarma1.mp3" id="sonido_alarma"></audio><br><br>
+    <button id="pausar_alarma" onclick="pausar_alarma()">Pausar alarma</button>
 </body>
 </html>
